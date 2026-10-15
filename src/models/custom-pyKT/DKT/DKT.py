@@ -20,7 +20,7 @@ class customDKT(nn.Module):
         h = self.dropout(h) # h in (B, L, hidden_dim)
 
         pos = torch.arange(L, device=c.device).unsqueeze(0).expand(B, L) # pos in (B, L)
-        start = torch.where(is_repeat, pos, L) # start in (B, L)
+        start = torch.where((is_repeat==0), pos, L) # start in (B, L)
         start = start.cummax(dim=1).values # start in (B, L)
 
         h_shift = torch.zeros_like(h) # h_shift in (B, L, hidden_dim)
