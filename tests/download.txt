@@ -1,0 +1,84 @@
+6.5s 1 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+6.5s 2 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+6.5s 3 0.00s - to python to disable frozen modules.
+6.5s 4 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+7.0s 5 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+7.0s 6 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+7.0s 7 0.00s - to python to disable frozen modules.
+7.0s 8 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+9.1s 9 /kaggle/input/datasets/nhatanhadr/xes3g5m-extended/test.csv
+9.1s 10 /kaggle/input/datasets/nhatanhadr/xes3g5m-extended/test_quelevel.csv
+9.1s 11 /kaggle/input/datasets/nhatanhadr/xes3g5m-extended/test_question_sequences.csv
+9.1s 12 /kaggle/input/datasets/nhatanhadr/xes3g5m-extended/test_question_window_sequences.csv
+9.1s 13 /kaggle/input/datasets/nhatanhadr/xes3g5m-extended/test_sequences.csv
+9.1s 14 /kaggle/input/datasets/nhatanhadr/xes3g5m-extended/test_sequences_quelevel.csv
+9.1s 15 /kaggle/input/datasets/nhatanhadr/xes3g5m-extended/test_window_sequences.csv
+9.1s 16 /kaggle/input/datasets/nhatanhadr/xes3g5m-extended/test_window_sequences_quelevel.csv
+9.1s 17 /kaggle/input/datasets/nhatanhadr/xes3g5m-extended/train_valid_sequences.csv
+9.1s 18 /kaggle/input/datasets/nhatanhadr/xes3g5m-extended/train_valid_sequences_quelevel.csv
+43209.8s 19 Timeout waiting for execute reply (43200s).
+43209.9s 20 Process is interrupted.
+43210.4s 21 Traceback (most recent call last):
+43210.4s 22 File "/usr/local/lib/python3.13/dist-packages/nbclient/client.py", line 730, in _async_poll_for_reply
+43210.4s 23 msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
+43210.4s 24 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+43210.4s 25 File "/usr/local/lib/python3.13/dist-packages/nbclient/util.py", line 96, in ensure_async
+43210.4s 26 result = await obj
+43210.4s 27 ^^^^^^^^^
+43210.4s 28 File "/usr/local/lib/python3.13/dist-packages/jupyter_client/channels.py", line 230, in get_msg
+43210.4s 29 raise Empty
+43210.4s 30 _queue.Empty
+43210.4s 31 
+43210.4s 32 During handling of the above exception, another exception occurred:
+43210.4s 33 
+43210.4s 34 Traceback (most recent call last):
+43210.4s 35 File "<string>", line 1, in <module>
+43210.4s 36 import sys;import papermill as pm;pm.execute_notebook("__notebook__.ipynb","__notebook__.ipynb",progress_bar=False,log_output=True,stdout_file=sys.stdout,stderr_file=sys.stderr,allow_errors=False,timeout=43200)
+43210.4s 37 ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+43210.4s 38 File "/usr/local/lib/python3.13/dist-packages/papermill/execute.py", line 116, in execute_notebook
+43210.4s 39 nb = papermill_engines.execute_notebook_with_engine(
+43210.4s 40 engine_name,
+43210.4s 41 ...<9 lines>...
+43210.4s 42 **engine_kwargs,
+43210.4s 43 )
+43210.4s 44 File "/usr/local/lib/python3.13/dist-packages/papermill/engines.py", line 49, in execute_notebook_with_engine
+43210.4s 45 return self.get_engine(engine_name).execute_notebook(nb, kernel_name, **kwargs)
+43210.4s 46 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+43210.4s 47 File "/usr/local/lib/python3.13/dist-packages/papermill/engines.py", line 371, in execute_notebook
+43210.4s 48 cls.execute_managed_notebook(nb_man, kernel_name, log_output=log_output, **kwargs)
+43210.4s 49 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+43210.4s 50 File "/usr/local/lib/python3.13/dist-packages/papermill/engines.py", line 443, in execute_managed_notebook
+43210.4s 51 return PapermillNotebookClient(nb_man, **final_kwargs).execute()
+43210.4s 52 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+43210.4s 53 File "/usr/local/lib/python3.13/dist-packages/papermill/clientwrap.py", line 45, in execute
+43210.4s 54 self.papermill_execute_cells()
+43210.4s 55 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+43210.4s 56 File "/usr/local/lib/python3.13/dist-packages/papermill/clientwrap.py", line 72, in papermill_execute_cells
+43210.4s 57 self.execute_cell(cell, index)
+43210.4s 58 ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+43210.4s 59 File "/usr/local/lib/python3.13/dist-packages/nbclient/util.py", line 84, in wrapped
+43210.4s 60 return just_run(coro(*args, **kwargs))
+43210.4s 61 File "/usr/local/lib/python3.13/dist-packages/nbclient/util.py", line 62, in just_run
+43210.4s 62 return loop.run_until_complete(coro)
+43210.4s 63 ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+43210.4s 64 File "/usr/lib/python3.13/asyncio/base_events.py", line 726, in run_until_complete
+43210.4s 65 return future.result()
+43210.4s 66 ~~~~~~~~~~~~~^^
+43210.4s 67 File "/usr/local/lib/python3.13/dist-packages/nbclient/client.py", line 949, in async_execute_cell
+43210.4s 68 exec_reply = await self.task_poll_for_reply
+43210.4s 69 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+43210.4s 70 File "/usr/local/lib/python3.13/dist-packages/nbclient/client.py", line 754, in _async_poll_for_reply
+43210.4s 71 await self._async_handle_timeout(timeout, cell)
+43210.4s 72 File "/usr/local/lib/python3.13/dist-packages/nbclient/client.py", line 801, in _async_handle_timeout
+43210.4s 73 raise CellTimeoutError.error_from_timeout_and_cell(
+43210.4s 74 "Cell execution timed out", timeout, cell
+43210.4s 75 )
+43210.4s 76 nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 43200 seconds.
+43210.4s 77 The message was: Cell execution timed out.
+43210.4s 78 Here is a preview of the cell contents:
+43210.4s 79 -------------------
+43210.4s 80 ['%%bash', 'set -o pipefail', '', '# 1) Cài đặt', 'cd /kaggle/working']
+43210.4s 81 ...
+43210.4s 82 ['echo "=========== TEST AUC 5 FOLD ==========="', 'for FOLD in 0 1 2 3 4; do', '  echo "--- Fold $FOLD ---"', '  grep -iE "auc" logs/test_f$FOLD.log | tail -n 3', 'done']
+43210.4s 83 -------------------
+43210.4s 84 
