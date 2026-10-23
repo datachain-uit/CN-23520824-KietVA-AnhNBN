@@ -1,0 +1,32 @@
+Namespace(bz=256, save_dir='sm_dkt09/assist2009_dkt_qid_sm_dkt09_42_0_0.2_200_0.001_0_0', fusion_type='late_fusion', use_wandb=0)
+model_name is dkt, dataset_name is assist2009
+Start preprocessing ../data/assist2009/test_sequences.csv fold: _-1...
+/kaggle/working/pykt-toolkit/pykt/datasets/data_loader.py:151: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /pytorch/torch/csrc/tensor/python_tensor.cpp:78.)
+  dori[key] = LongTensor(dori[key])
+interaction_num: 62808
+file path: ../data/assist2009/test_sequences.csv, qlen: 904, clen: 904, rlen: 904
+Start preprocessing ../data/assist2009/test_window_sequences.csv fold: _-1...
+interaction_num: 62810
+file path: ../data/assist2009/test_window_sequences.csv, qlen: 20362, clen: 20362, rlen: 20362
+Start preprocessing ../data/assist2009/test_question_sequences.csv fold: _-1...
+interaction_num: 61799
+file path: ../data/assist2009/test_question_sequences.csv, qlen: 18292, clen: 18292, rlen: 18292
+Start preprocessing ../data/assist2009/test_question_window_sequences.csv fold: _-1...
+interaction_num: 61882
+file path: ../data/assist2009/test_question_window_sequences.csv, qlen: 30610, clen: 30610, rlen: 30610
+has test_question_file!
+Start predicting model: dkt, embtype: qid, save_dir: sm_dkt09/assist2009_dkt_qid_sm_dkt09_42_0_0.2_200_0.001_0_0, dataset_name: assist2009
+model_config: {'dropout': 0.2, 'emb_size': 200}
+data_config: {'dpath': '../data/assist2009', 'num_q': 17737, 'num_c': 123, 'input_type': ['questions', 'concepts'], 'max_concepts': 4, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv', 'dataset_name': 'assist2009'}
+ts.shape: (61904,), ps.shape: (61904,)
+testauc: 0.8234333898810757, testacc: 0.766057120703024
+ts.shape: (62040,), ps.shape: (62040,)
+testauc: 0.8234333898810757, testacc: 0.766057120703024, window_testauc: 0.8242954357139549, window_testacc: 0.7663281753707286
+{'testauc': np.float64(0.8234333898810757), 'testacc': 0.766057120703024, 'window_testauc': np.float64(0.8242954357139549), 'window_testacc': 0.7663281753707286, 'oriaucconcepts': np.float64(0.7374027318603245), 'oriauclate_mean': np.float64(0.7496534183889358), 'oriauclate_vote': np.float64(0.7489941952230925), 'oriauclate_all': np.float64(0.7472796539191278), 'oriaccconcepts': 0.7138343379350574, 'oriacclate_mean': 0.7207486508209898, 'oriacclate_vote': 0.7210931220576415, 'oriacclate_all': 0.7170742909633713, 'windowaucconcepts': np.float64(0.7384253531655709), 'windowauclate_mean': np.float64(0.7507633313841559), 'windowauclate_vote': np.float64(0.7500568288684768), 'windowauclate_all': np.float64(0.7483995558646235), 'windowaccconcepts': 0.714230309298342, 'windowacclate_mean': 0.7211997403490015, 'windowacclate_vote': 0.7214479361564016, 'windowacclate_all': 0.7175149872083699}
+
+========== Final reported metric ==========
+Dataset has question id -> report at the question level on the windowed test set:
+  windowauclate_mean = 0.750763
+  windowacclate_mean = 0.721200
+===========================================
+

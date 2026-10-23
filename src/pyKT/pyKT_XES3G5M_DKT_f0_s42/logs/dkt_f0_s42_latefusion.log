@@ -1,0 +1,14 @@
+Namespace(bz=64, save_dir='sm_dkt/peiyou_dkt_qid_sm_dkt_42_0_0.2_200_0.001_0_0', fusion_type='late_fusion', use_wandb=0)
+model_name is dkt, dataset_name is peiyou
+Start preprocessing ../data/peiyou/test_sequences.csv fold: _-1...
+/kaggle/working/pykt-toolkit/pykt/datasets/data_loader.py:151: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /pytorch/torch/csrc/tensor/python_tensor.cpp:78.)
+  dori[key] = LongTensor(dori[key])
+interaction_num: 1274274
+file path: ../data/peiyou/test_sequences.csv, qlen: 8279, clen: 8279, rlen: 8279
+Start preprocessing ../data/peiyou/test_window_sequences.csv fold: _-1...
+interaction_num: 1274309
+file path: ../data/peiyou/test_window_sequences.csv, qlen: 555322, clen: 555322, rlen: 555322
+Start preprocessing ../data/peiyou/test_question_sequences.csv fold: _-1...
+interaction_num: 1267550
+file path: ../data/peiyou/test_question_sequences.csv, qlen: 312494, clen: 312494, rlen: 312494
+Start preprocessing ../data/peiyou/test_question_window_sequences.csv fold: _-1...
