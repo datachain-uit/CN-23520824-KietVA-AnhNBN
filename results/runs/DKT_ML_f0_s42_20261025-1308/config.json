@@ -1,0 +1,17 @@
+{
+  "run_id": "DKT_ML_f0_s42_20261025-1308",
+  "seed": 42,
+  "model": "DKT",
+  "variant": "ML",
+  "data_train_valid_path": "/kaggle/input/datasets/kiet222005/xes3g5m-externd/train_valid_sequences.csv",
+  "data_test_path": "/kaggle/input/datasets/kiet222005/xes3g5m-externd/test_question_window_sequences.csv",
+  "num_concepts": 865,
+  "embed_dim": 100,
+  "hidden_dim": 200,
+  "dropout": 0.2,
+  "lr": 0.001,
+  "batch_size": 128,
+  "num_epochs": 100,
+  "patience": 10,
+  "fold": 0
+}

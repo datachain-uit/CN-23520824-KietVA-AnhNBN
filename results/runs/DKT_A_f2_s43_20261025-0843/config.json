@@ -1,0 +1,17 @@
+{
+  "run_id": "DKT_A_f2_s43_20261025-0843",
+  "seed": 43,
+  "model": "DKT",
+  "variant": "A",
+  "data_train_valid_path": "/kaggle/input/datasets/nhatanhadr/xes3g5m/train_valid_sequences.csv",
+  "data_test_path": "/kaggle/input/datasets/nhatanhadr/xes3g5m/test_question_window_sequences.csv",
+  "num_concepts": 865,
+  "embed_dim": 100,
+  "hidden_dim": 200,
+  "dropout": 0.2,
+  "lr": 0.001,
+  "batch_size": 128,
+  "num_epochs": 100,
+  "patience": 10,
+  "fold": 2
+}
