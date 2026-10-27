@@ -1,3 +1,6 @@
 data/
 .venv/
 tests/parquet
+tests/bootstrap/runs
+__pycache__/
+*.pyc
