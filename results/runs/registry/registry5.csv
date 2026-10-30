@@ -1,0 +1,2 @@
+run_id,model,variant,fold,seed,auc,acc,rmse,brier,ece,auprc_wrong,f1_wrong,n_epochs,sec_per_epoch,train_time_s,peak_mem_gb,n_params,preds_path,preds_raw_path
+DKT_pyKT_f1_s42_20261026-1834,DKT,pyKT,1,42,0.783509,0.817011,0.363302,0.131989,0.009158,0.505608,0.370208,18,17.666666666666668,318.0,,841465,DKT_pyKT_f1_s42_20261026-1834/preds.parquet,DKT_pyKT_f1_s42_20261026-1834/preds_raw.parquet
