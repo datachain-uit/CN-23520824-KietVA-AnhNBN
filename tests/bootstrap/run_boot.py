@@ -1,31 +1,34 @@
 # run_boot.py – bootstrap cho N1, N2, đọc preds theo registry (thay run_boot.ipynb rỗng)
-# Đặt file trong tests/, cạnh boot_metrics.py (Khung 4.8 ngày 25/10). --runs_root là bản
-# sao thư mục runs/ trên Drive (có preds.parquet); chép registry.csv của repo vào
-# <runs_root>/registry/. Chạy ở gốc repo:
-#   python tests/run_boot.py --runs_root <bản sao runs> --seed 42 --out tests/boot_s42
+# Đặt trong tests/bootstrap/, cạnh boot_metrics.py (Khung 4.8 ngày 25/10). --runs_root
+# là bản sao thư mục runs/ trên Drive (có preds.parquet); chép registry.csv của repo vào
+# <runs_root>/registry/. Chạy ở gốc repo (bản 28/10):
+#   python tests/bootstrap/run_boot.py --runs_root <bản sao runs> --seed 42 \
+#       --out tests/bootstrap/out/boot_s42
 # Ghi 3 file: <out>_pairs.csv (mọi cặp, mọi fold), <out>_strata.csv (theo nhóm câu, cả
 # nhóm chéo câu × câu trước), <out>_kcpos.csv (AUC mức KC theo vị trí KC, câu nhiều KC).
 import argparse, os
 import pandas as pd
 from sklearn.metrics import roc_auc_score
 from boot_metrics import paired_bootstrap, strata
- 
+
 PAIRS = [("B", "A"), ("C", "A"), ("C", "B"),                      # N2
-         ("ML", "A"), ("ML_cus", "ML"), ("C", "ML_cus"), ("Fuse", "C")]   # N1: phân rã
-STRATA_PAIRS = [("C", "A"), ("ML_cus", "A"), ("ML_cus", "C")]      # kiểm tra cơ chế
- 
- 
+         ("ML", "A"), ("ML_cus", "ML"), ("C", "ML_cus"), ("Fuse", "C"),  # N1: phân rã
+         ("ML_cus", "A"), ("Fuse", "A"), ("Fuse", "ML_cus")]  # 3 cách hiện thực
+STRATA_PAIRS = [("C", "A"), ("ML_cus", "A"), ("ML_cus", "C"), ("Fuse", "A")]
+
+
 def kc_position_auc(raw):
-    """Câu nhiều KC: AUC mức KC của KC đầu và của KC thứ 2 trở đi."""
+    """Câu nhiều KC: AUC mức KC của KC đầu và của KC thứ 2 trở đi (cần cột rest)."""
+    assert "rest" in raw, "preds_raw thiếu cột rest: chạy fix_pykt_raw.py (28/10)"
     n = raw.groupby("qidx")["qidx"].transform("size")
-    pos = (n - 1 - raw["rest"]) if "rest" in raw else raw.groupby("qidx").cumcount()
+    pos = n - 1 - raw["rest"]                  # không dùng thứ tự dòng: pyKT ghi ngược
     m = raw[n > 1]
     pos = pos[n > 1]
     return {g: roc_auc_score(m.loc[pos == 0 if g == "KC đầu" else pos > 0, "y_true"],
                              m.loc[pos == 0 if g == "KC đầu" else pos > 0, "p_kc"])
             for g in ("KC đầu", "KC 2+")}
- 
- 
+
+
 def main(a):
     reg = pd.read_csv(os.path.join(a.runs_root, "registry", "registry.csv"))
     reg = reg[(reg["model"] == a.model) & (reg["seed"] == a.seed)].copy()
@@ -74,13 +77,13 @@ def main(a):
     pd.DataFrame(kcpos).assign(**seed).to_csv(f"{a.out}_kcpos.csv", index=False)
     summary = pd.concat(pairs).groupby(["so_sanh", "metric"])["delta"]
     print(summary.agg(["mean", "min", "max"]))
- 
- 
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--runs_root", default="results/runs")
     ap.add_argument("--model", default="DKT")
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--n_boot", type=int, default=1000)
-    ap.add_argument("--out", default="tests/boot_s42")
+    ap.add_argument("--out", default="tests/bootstrap/out/boot_s42")
     main(ap.parse_args())
