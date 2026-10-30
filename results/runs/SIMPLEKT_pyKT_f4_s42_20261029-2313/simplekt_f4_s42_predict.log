@@ -1,0 +1,38 @@
+model_name: simplekt, emb_type: qid
+Start preprocessing ../data/peiyou/qwin_8s_0.csv fold: _-1...
+/kaggle/working/pykt-toolkit/pykt/datasets/data_loader.py:151: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /pytorch/torch/csrc/tensor/python_tensor.cpp:78.)
+  dori[key] = LongTensor(dori[key])
+interaction_num: 158435
+file path: ../data/peiyou/qwin_8s_0.csv, qlen: 86779, clen: 86779, rlen: 86779
+shard 0: 136909 câu hỏi
+Start preprocessing ../data/peiyou/qwin_8s_1.csv fold: _-1...
+interaction_num: 159766
+file path: ../data/peiyou/qwin_8s_1.csv, qlen: 88331, clen: 88331, rlen: 88331
+shard 1: 138199 câu hỏi
+Start preprocessing ../data/peiyou/qwin_8s_2.csv fold: _-1...
+interaction_num: 156905
+file path: ../data/peiyou/qwin_8s_2.csv, qlen: 85124, clen: 85124, rlen: 85124
+shard 2: 136149 câu hỏi
+Start preprocessing ../data/peiyou/qwin_8s_3.csv fold: _-1...
+interaction_num: 160123
+file path: ../data/peiyou/qwin_8s_3.csv, qlen: 88570, clen: 88570, rlen: 88570
+shard 3: 138564 câu hỏi
+Start preprocessing ../data/peiyou/qwin_8s_4.csv fold: _-1...
+interaction_num: 157353
+file path: ../data/peiyou/qwin_8s_4.csv, qlen: 85370, clen: 85370, rlen: 85370
+shard 4: 136418 câu hỏi
+Start preprocessing ../data/peiyou/qwin_8s_5.csv fold: _-1...
+interaction_num: 161788
+file path: ../data/peiyou/qwin_8s_5.csv, qlen: 90342, clen: 90342, rlen: 90342
+shard 5: 139576 câu hỏi
+Start preprocessing ../data/peiyou/qwin_8s_6.csv fold: _-1...
+interaction_num: 158639
+file path: ../data/peiyou/qwin_8s_6.csv, qlen: 86888, clen: 86888, rlen: 86888
+shard 6: 137213 câu hỏi
+Start preprocessing ../data/peiyou/qwin_8s_7.csv fold: _-1...
+interaction_num: 157382
+file path: ../data/peiyou/qwin_8s_7.csv, qlen: 86293, clen: 86293, rlen: 86293
+shard 7: 136169 câu hỏi
+3613 học sinh, 1099197 câu hỏi được chấm
+windowauclate_mean = 0.812430
+windowacclate_mean = 0.824017
