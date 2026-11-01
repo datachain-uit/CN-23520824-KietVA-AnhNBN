@@ -1,0 +1,205 @@
+/kaggle/working/pykt-toolkit/pykt/models/gkt.py:329: SyntaxWarning: invalid escape sequence '\m'
+  this gate is different with that of the DKVMN. We used the input matrix to build the erase and add gates, rather than $\mathbf{v}_{t}$ vector in the DKVMN.
+/kaggle/working/pykt-toolkit/pykt/models/folibikt.py:592: SyntaxWarning: invalid escape sequence '\T'
+  * `base` is the constant used for calculating $\Theta$
+/kaggle/working/pykt-toolkit/pykt/models/stablekt.py:592: SyntaxWarning: invalid escape sequence '\T'
+  * `base` is the constant used for calculating $\Theta$
+/kaggle/working/pykt-toolkit/pykt/models/extrakt.py:574: SyntaxWarning: invalid escape sequence '\T'
+  * `base` is the constant used for calculating $\Theta$
+2026-10-27 12:36:37 - main - said: load config files.
+Start init data
+peiyou akt {'assist2015': {'dpath': '../data/assist2015', 'num_q': 0, 'num_c': 100, 'input_type': ['concepts'], 'max_concepts': 1, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}, 'algebra2005': {'dpath': '../data/algebra2005', 'num_q': 173113, 'num_c': 112, 'input_type': ['questions', 'concepts'], 'max_concepts': 7, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}, 'assist2009': {'dpath': '../data/assist2009', 'num_q': 17737, 'num_c': 123, 'input_type': ['questions', 'concepts'], 'max_concepts': 4, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}, 'slepemapy': {'dpath': '../data/slepemapy', 'num_q': 2913, 'num_c': 1458, 'input_type': ['questions', 'concepts'], 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv'}, 'assist2017': {'dpath': '../data/assist2017', 'num_q': 3162, 'num_c': 102, 'input_type': ['questions', 'concepts'], 'min_seq_len': 3, 'maxlen': 500, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv'}, 'assist2012': {'dpath': '../data/assist2012', 'num_q': 53070, 'num_c': 265, 'input_type': ['questions', 'concepts'], 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv'}, 'statics2011': {'dpath': '../data/statics2011', 'num_q': 0, 'num_c': 1223, 'input_type': ['concepts'], 'max_concepts': 1, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}, 'junyi2015': {'dpath': '../data/junyi2015', 'num_q': 721, 'num_c': 39, 'input_type': ['questions', 'concepts'], 'max_concepts': 1, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv'}, 'bridge2algebra2006': {'dpath': '../data/bridge2algebra2006', 'num_q': 129263, 'num_c': 493, 'input_type': ['questions', 'concepts'], 'max_concepts': 5, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}, 'ednet': {'dpath': '../data/ednet', 'num_q': 11901, 'num_c': 188, 'input_type': ['questions', 'concepts'], 'max_concepts': 7, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}, 'nips_task34': {'dpath': '../data/nips_task34', 'num_q': 948, 'num_c': 57, 'input_type': ['questions', 'concepts'], 'max_concepts': 2, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}, 'poj': {'dpath': '../data/poj', 'num_q': 0, 'num_c': 2748, 'input_type': ['concepts'], 'max_concepts': 1, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}, 'peiyou': {'dpath': '../data/peiyou', 'num_q': 7652, 'num_c': 865, 'input_type': ['questions', 'concepts'], 'max_concepts': 6, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'train_valid_original_file': 'train_valid.csv', 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}, 'ednet5w': {'dpath': '../data/ednet5w', 'num_q': 12235, 'num_c': 188, 'input_type': ['questions', 'concepts'], 'max_concepts': 7, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}, 'pretrain': {'dpath': '../data/pretrain', 'num_q': 340614, 'num_c': 1838, 'input_type': ['questions', 'concepts'], 'max_concepts': 7, 'min_seq_len': 3, 'maxlen': 1024, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel_200.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}} 3 64
+2026-10-27 12:36:37 - main - said: init_dataset
+dataset_name:peiyou
+data_config:{'assist2015': {'dpath': '../data/assist2015', 'num_q': 0, 'num_c': 100, 'input_type': ['concepts'], 'max_concepts': 1, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}, 'algebra2005': {'dpath': '../data/algebra2005', 'num_q': 173113, 'num_c': 112, 'input_type': ['questions', 'concepts'], 'max_concepts': 7, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}, 'assist2009': {'dpath': '../data/assist2009', 'num_q': 17737, 'num_c': 123, 'input_type': ['questions', 'concepts'], 'max_concepts': 4, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}, 'slepemapy': {'dpath': '../data/slepemapy', 'num_q': 2913, 'num_c': 1458, 'input_type': ['questions', 'concepts'], 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv'}, 'assist2017': {'dpath': '../data/assist2017', 'num_q': 3162, 'num_c': 102, 'input_type': ['questions', 'concepts'], 'min_seq_len': 3, 'maxlen': 500, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv'}, 'assist2012': {'dpath': '../data/assist2012', 'num_q': 53070, 'num_c': 265, 'input_type': ['questions', 'concepts'], 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv'}, 'statics2011': {'dpath': '../data/statics2011', 'num_q': 0, 'num_c': 1223, 'input_type': ['concepts'], 'max_concepts': 1, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}, 'junyi2015': {'dpath': '../data/junyi2015', 'num_q': 721, 'num_c': 39, 'input_type': ['questions', 'concepts'], 'max_concepts': 1, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv'}, 'bridge2algebra2006': {'dpath': '../data/bridge2algebra2006', 'num_q': 129263, 'num_c': 493, 'input_type': ['questions', 'concepts'], 'max_concepts': 5, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}, 'ednet': {'dpath': '../data/ednet', 'num_q': 11901, 'num_c': 188, 'input_type': ['questions', 'concepts'], 'max_concepts': 7, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}, 'nips_task34': {'dpath': '../data/nips_task34', 'num_q': 948, 'num_c': 57, 'input_type': ['questions', 'concepts'], 'max_concepts': 2, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}, 'poj': {'dpath': '../data/poj', 'num_q': 0, 'num_c': 2748, 'input_type': ['concepts'], 'max_concepts': 1, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}, 'peiyou': {'dpath': '../data/peiyou', 'num_q': 7652, 'num_c': 865, 'input_type': ['questions', 'concepts'], 'max_concepts': 6, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'train_valid_original_file': 'train_valid.csv', 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}, 'ednet5w': {'dpath': '../data/ednet5w', 'num_q': 12235, 'num_c': 188, 'input_type': ['questions', 'concepts'], 'max_concepts': 7, 'min_seq_len': 3, 'maxlen': 200, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}, 'pretrain': {'dpath': '../data/pretrain', 'num_q': 340614, 'num_c': 1838, 'input_type': ['questions', 'concepts'], 'max_concepts': 7, 'min_seq_len': 3, 'maxlen': 1024, 'emb_path': '', 'train_valid_original_file': 'train_valid.csv', 'train_valid_file': 'train_valid_sequences.csv', 'folds': [0, 1, 2, 3, 4], 'test_original_file': 'test.csv', 'test_file': 'test_sequences.csv', 'test_window_file': 'test_window_sequences.csv', 'test_question_file': 'test_question_sequences.csv', 'test_question_window_file': 'test_question_window_sequences.csv', 'train_valid_original_file_quelevel': 'train_valid_quelevel.csv', 'train_valid_file_quelevel': 'train_valid_sequences_quelevel_200.csv', 'test_file_quelevel': 'test_sequences_quelevel.csv', 'test_window_file_quelevel': 'test_window_sequences_quelevel.csv', 'test_original_file_quelevel': 'test_quelevel.csv'}}
+Start preprocessing ../data/peiyou/train_valid_sequences.csv fold: _3...
+/kaggle/working/pykt-toolkit/pykt/datasets/data_loader.py:151: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /pytorch/torch/csrc/tensor/python_tensor.cpp:78.)
+  dori[key] = LongTensor(dori[key])
+interaction_num: 1027043
+file path: ../data/peiyou/train_valid_sequences.csv, qlen: 6677, clen: 6677, rlen: 6677
+Start preprocessing ../data/peiyou/train_valid_sequences.csv fold: _0_1_2_4...
+interaction_num: 4112001
+file path: ../data/peiyou/train_valid_sequences.csv, qlen: 26720, clen: 26720, rlen: 26720
+params: {'dataset_name': 'peiyou', 'model_name': 'akt', 'emb_type': 'qid', 'save_dir': 'sm_akt_f3', 'seed': 42, 'fold': 3, 'dropout': 0.2, 'd_model': 256, 'd_ff': 512, 'num_attn_heads': 8, 'n_blocks': 4, 'learning_rate': 0.0001, 'use_wandb': 0, 'add_uuid': 0}, params_str: peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+Start training model: akt, embtype: qid, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0, dataset_name: peiyou
+model_config: {'dropout': 0.2, 'd_model': 256, 'd_ff': 512, 'num_attn_heads': 8, 'n_blocks': 4, 'learning_rate': 0.0001, 'use_wandb': 0, 'add_uuid': 0}
+train_config: {'batch_size': 64, 'num_epochs': 200, 'optimizer': 'adam', 'seq_len': 200}
+2026-10-27 12:36:53 - main - said: init_model
+model_name:akt
+model is AKT(
+  (difficult_param): Embedding(7653, 1)
+  (q_embed_diff): Embedding(866, 256)
+  (qa_embed_diff): Embedding(1731, 256)
+  (q_embed): Embedding(865, 256)
+  (qa_embed): Embedding(2, 256)
+  (model): Architecture(
+    (blocks_1): ModuleList(
+      (0-3): 4 x TransformerLayer(
+        (masked_attn_head): MultiHeadAttention(
+          (v_linear): Linear(in_features=256, out_features=256, bias=True)
+          (k_linear): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.2, inplace=False)
+          (out_proj): Linear(in_features=256, out_features=256, bias=True)
+        )
+        (layer_norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout1): Dropout(p=0.2, inplace=False)
+        (linear1): Linear(in_features=256, out_features=512, bias=True)
+        (activation): ReLU()
+        (dropout): Dropout(p=0.2, inplace=False)
+        (linear2): Linear(in_features=512, out_features=256, bias=True)
+        (layer_norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout2): Dropout(p=0.2, inplace=False)
+      )
+    )
+    (blocks_2): ModuleList(
+      (0-7): 8 x TransformerLayer(
+        (masked_attn_head): MultiHeadAttention(
+          (v_linear): Linear(in_features=256, out_features=256, bias=True)
+          (k_linear): Linear(in_features=256, out_features=256, bias=True)
+          (dropout): Dropout(p=0.2, inplace=False)
+          (out_proj): Linear(in_features=256, out_features=256, bias=True)
+        )
+        (layer_norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout1): Dropout(p=0.2, inplace=False)
+        (linear1): Linear(in_features=256, out_features=512, bias=True)
+        (activation): ReLU()
+        (dropout): Dropout(p=0.2, inplace=False)
+        (linear2): Linear(in_features=512, out_features=256, bias=True)
+        (layer_norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout2): Dropout(p=0.2, inplace=False)
+      )
+    )
+  )
+  (out): Sequential(
+    (0): Linear(in_features=512, out_features=512, bias=True)
+    (1): ReLU()
+    (2): Dropout(p=0.2, inplace=False)
+    (3): Linear(in_features=512, out_features=256, bias=True)
+    (4): ReLU()
+    (5): Dropout(p=0.2, inplace=False)
+    (6): Linear(in_features=256, out_features=1, bias=True)
+  )
+)
+2026-10-27 12:36:55 - main - said: train model
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/linear.py:134: UserWarning: Requested unified CUBLASLT workspace size of 1048576 bytes exceeds CUBLAS workspace size of 131072 bytes. Please increase CUBLAS workspace size via CUBLAS_WORKSPACE_CONFIG or decrease requested CUBLASLT_WORKSPACE_SIZE. Otherwise CUBLASLT workspace size will be limited to the CUBLAS workspace size. (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:228.)
+  return F.linear(input, self.weight, self.bias)
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 1, validauc: 0.7964, validacc: 0.8285, best epoch: 1, best auc: 0.7964, train loss: 0.42523333984500405, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 2, validauc: 0.8148, validacc: 0.8333, best epoch: 2, best auc: 0.8148, train loss: 0.3956269039592982, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 3, validauc: 0.8297, validacc: 0.8379, best epoch: 3, best auc: 0.8297, train loss: 0.38122113020036147, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 4, validauc: 0.8404, validacc: 0.8423, best epoch: 4, best auc: 0.8404, train loss: 0.37017883842069566, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 5, validauc: 0.8453, validacc: 0.8438, best epoch: 5, best auc: 0.8453, train loss: 0.36319675281885766, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 6, validauc: 0.8482, validacc: 0.845, best epoch: 6, best auc: 0.8482, train loss: 0.3586977740279698, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 7, validauc: 0.8502, validacc: 0.8455, best epoch: 7, best auc: 0.8502, train loss: 0.3555200442170946, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 8, validauc: 0.8517, validacc: 0.8463, best epoch: 8, best auc: 0.8517, train loss: 0.353041749458561, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 9, validauc: 0.8531, validacc: 0.8472, best epoch: 9, best auc: 0.8531, train loss: 0.3512405319052446, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 10, validauc: 0.8542, validacc: 0.8476, best epoch: 10, best auc: 0.8542, train loss: 0.3495166521832473, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 11, validauc: 0.8542, validacc: 0.8476, best epoch: 10, best auc: 0.8542, train loss: 0.3481731163743339, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 12, validauc: 0.856, validacc: 0.8488, best epoch: 12, best auc: 0.856, train loss: 0.34706497086804744, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 13, validauc: 0.856, validacc: 0.8488, best epoch: 12, best auc: 0.856, train loss: 0.34600222800448727, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 14, validauc: 0.8573, validacc: 0.8491, best epoch: 14, best auc: 0.8573, train loss: 0.34523033915220785, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 15, validauc: 0.8573, validacc: 0.8491, best epoch: 14, best auc: 0.8573, train loss: 0.34430286860046605, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 16, validauc: 0.8584, validacc: 0.8498, best epoch: 16, best auc: 0.8584, train loss: 0.34352397933719425, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 17, validauc: 0.8584, validacc: 0.8498, best epoch: 16, best auc: 0.8584, train loss: 0.34286506043951154, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 18, validauc: 0.8584, validacc: 0.8498, best epoch: 16, best auc: 0.8584, train loss: 0.3421221551733465, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 19, validauc: 0.8595, validacc: 0.8502, best epoch: 19, best auc: 0.8595, train loss: 0.3415269959263298, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 20, validauc: 0.8595, validacc: 0.8502, best epoch: 19, best auc: 0.8595, train loss: 0.34089527589559454, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 21, validauc: 0.8595, validacc: 0.8502, best epoch: 19, best auc: 0.8595, train loss: 0.34041003609026815, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 22, validauc: 0.8595, validacc: 0.8502, best epoch: 19, best auc: 0.8595, train loss: 0.3399401298417008, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 23, validauc: 0.8607, validacc: 0.8508, best epoch: 23, best auc: 0.8607, train loss: 0.3394525693137436, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 24, validauc: 0.8607, validacc: 0.8508, best epoch: 23, best auc: 0.8607, train loss: 0.33900559208936976, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 25, validauc: 0.8607, validacc: 0.8508, best epoch: 23, best auc: 0.8607, train loss: 0.3384339686694285, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 26, validauc: 0.8607, validacc: 0.8508, best epoch: 23, best auc: 0.8607, train loss: 0.3380930100940097, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 27, validauc: 0.8607, validacc: 0.8508, best epoch: 23, best auc: 0.8607, train loss: 0.337525871495498, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 28, validauc: 0.8607, validacc: 0.8508, best epoch: 23, best auc: 0.8607, train loss: 0.3371468163072867, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 29, validauc: 0.8619, validacc: 0.8514, best epoch: 29, best auc: 0.8619, train loss: 0.3367769627056558, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 30, validauc: 0.8619, validacc: 0.8514, best epoch: 29, best auc: 0.8619, train loss: 0.33632915653689666, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 31, validauc: 0.8619, validacc: 0.8514, best epoch: 29, best auc: 0.8619, train loss: 0.3359701148553, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 32, validauc: 0.8619, validacc: 0.8514, best epoch: 29, best auc: 0.8619, train loss: 0.3356267479631037, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 33, validauc: 0.8619, validacc: 0.8514, best epoch: 29, best auc: 0.8619, train loss: 0.33521093035368327, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 34, validauc: 0.8619, validacc: 0.8514, best epoch: 29, best auc: 0.8619, train loss: 0.33479767815431394, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 35, validauc: 0.8619, validacc: 0.8514, best epoch: 29, best auc: 0.8619, train loss: 0.33445725662778625, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 36, validauc: 0.8619, validacc: 0.8514, best epoch: 29, best auc: 0.8619, train loss: 0.334031673167245, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 37, validauc: 0.8619, validacc: 0.8514, best epoch: 29, best auc: 0.8619, train loss: 0.3336740491937771, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 38, validauc: 0.8619, validacc: 0.8514, best epoch: 29, best auc: 0.8619, train loss: 0.3334273891741357, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+ts.shape: (1020366,), ps.shape: (1020366,)
+Epoch: 39, validauc: 0.8619, validacc: 0.8514, best epoch: 29, best auc: 0.8619, train loss: 0.3330550471791816, emb_type: qid, model: akt, save_dir: sm_akt_f3/peiyou_akt_qid_sm_akt_f3_42_3_0.2_256_512_8_4_0.0001_0_0
+            testauc: -1, testacc: -1, window_testauc: -1, window_testacc: -1
+fold	modelname	embtype	testauc	testacc	window_testauc	window_testacc	validauc	validacc	best_epoch
+3	akt	qid	-1	-1	-1	-1	0.8619276982727063	0.8514160605116203	29
+end:2026-10-27 15:45:55.389240
