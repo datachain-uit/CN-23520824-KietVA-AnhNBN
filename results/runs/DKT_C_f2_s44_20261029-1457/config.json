@@ -1,0 +1,17 @@
+{
+  "run_id": "DKT_C_f2_s44_20261029-1457",
+  "seed": 44,
+  "model": "DKT",
+  "variant": "C",
+  "data_train_valid_path": "/kaggle/input/datasets/nhatanhadr/xes3g5m-extended/train_valid_sequences.csv",
+  "data_test_path": "/kaggle/input/datasets/nhatanhadr/xes3g5m-extended/test_question_window_sequences.csv",
+  "num_concepts": 865,
+  "embed_dim": 100,
+  "hidden_dim": 200,
+  "dropout": 0.2,
+  "lr": 0.001,
+  "batch_size": 128,
+  "num_epochs": 100,
+  "patience": 10,
+  "fold": 2
+}
