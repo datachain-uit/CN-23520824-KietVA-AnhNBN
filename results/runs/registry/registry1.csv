@@ -1,2 +1,0 @@
-run_id,model,variant,fold,seed,auc,acc,rmse,brier,ece,auprc_wrong,f1_wrong,n_epochs,sec_per_epoch,train_time_s,peak_mem_gb,n_params,preds_path,preds_raw_path
-QIKT_pyKT_f0_s42_20261101-0718,QIKT,pyKT,0,42,0.820492,0.829634,0.349472,0.122131,0.003835,0.575356,0.439243,12,164.16666666666666,1970.0,,13290684,QIKT_pyKT_f0_s42_20261101-0718/preds.parquet,
