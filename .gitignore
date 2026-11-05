@@ -3,4 +3,4 @@ data/
 tests/parquet
 tests/bootstrap/runs
 __pycache__/
-*.pyctests/bootstrap/test.csv
+test/bootstrap/test.csv
