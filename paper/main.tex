@@ -1,0 +1,101 @@
+\documentclass[runningheads]{llncs}
+
+\usepackage[T1]{fontenc}
+% T1 fonts will be used to generate the final print and online PDFs,
+% so please use T1 fonts in your manuscript whenever possible.
+% Other font encondings may result in incorrect characters.
+
+\usepackage{amsmath}
+
+\usepackage{graphicx}
+
+\usepackage{colortbl}
+\usepackage{xcolor}
+
+\usepackage{pifont}
+
+\usepackage{booktabs}
+
+\usepackage{tabularx}
+\usepackage{multirow}
+
+\usepackage{array}
+
+\usepackage{marvosym}
+
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=red,
+  citecolor=blue,
+  urlcolor=blue,
+  filecolor=blue,
+  anchorcolor=blue
+}
+
+\usepackage{orcidlink}
+\renewcommand{\orcidID}[1]{\,\orcidlink{#1}}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}m{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\begin{document}
+
+\title{Intra-Question Label Leakage in Knowledge Tracing with Multi-KC Questions: A Controlled Study on XES3G5M}
+\titlerunning{Intra-Question Label Leakage in Knowledge Tracing}
+
+% TODO: xác nhận danh sách, thứ tự và email với thầy/cô
+\author{
+Nhat-Anh Bui Nguyen\inst{1,4} \and
+Anh-Kiet Vo\inst{1,4} \and
+Thu Nguyen\inst{1,4}~\textsuperscript{(\Letter)}\orcidID{0000-0002-6577-0159} \and
+Khoa Tan Vo\inst{1,4}\orcidID{0000-0002-5343-1686} \and
+Phuc Nguyen\inst{2,4}\orcidID{0000-0002-6577-0159} \and
+Tu-Anh Nguyen-Hoang\inst{3,4}\orcidID{0000-0001-9283-769X}
+}
+\authorrunning{N.-A. Bui Nguyen et al.}
+
+
+\institute{Faculty of Information Science and Engineering, University of Information Technology, Ho Chi Minh City, Vietnam \and
+Faculty of Information Systems, University of Economics and Law, Ho Chi Minh City, Vietnam \and
+Information Security Laboratory, University of Information Technology, Ho Chi Minh City, Vietnam \and
+Vietnam National University, Ho Chi Minh City, Vietnam
+\\
+\email{\{23520056,23520824\}@gm.uit.edu.vn, \{thunta,khoavt\}@uit.edu.vn, phucnq@uel.edu.vn, anhnht@uit.edu.vn}
+\\[3pt]\textsuperscript{(\Letter)}\,Corresponding author: Thu Nguyen (thunta@uit.edu.vn)}
+
+
+\maketitle
+
+\begin{abstract}
+ABSTRACT. % 150--250 từ; khung 7 câu ở mục 7.3 của nhận xét
+
+\keywords{x \and x \and x \and x}
+\end{abstract}
+
+\section{Introduction}
+\input{sections/01_intro}
+
+\section{Related Work}      \input{sections/02_related}
+\section{Problem Formulation}   \input{sections/03_problem}
+\section{Training Rule: Pre-Question Conditioning}     \input{sections/04_rule}
+\section{Experimental Setup} \input{sections/05_setup}
+\section{Results}          \input{sections/06_results}
+\section{Discussion and Limitations} \input{sections/07_discussion}
+\section{Conclusion}       \input{sections/08_conclusion}
+
+\begin{credits}
+\subsubsection{\ackname} This research is funded by \ldots
+
+\subsubsection{\discintname}
+% TODO: nếu nộp qua CMT, kiểm tra xem hội nghị có yêu cầu khai báo ở đây hay trong hệ thống nộp bài.
+The authors have no competing interests to declare that are relevant to
+the content of this article.
+\end{credits}
+
+\bibliographystyle{splncs04}
+\bibliography{ref}
+
+\end{document}

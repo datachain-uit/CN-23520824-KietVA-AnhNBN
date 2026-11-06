@@ -1,0 +1,25 @@
+\subsection{Notation}
+The goal of the knowledge tracing problem is to predict the probability that a student will correctly answer any given question $q^*$ in the future, based on that student's past history of learning interactions. Let $\mathcal{Q}$ be the set of questions and $\mathcal{C}$ be the set of knowledge components (KCs). The history of student learning interactions is a sequence of $T$ question attempts $\mathcal{S} = \big((q_t, C_t, r_t)\big)_{t=1}^{T}$, where $q_t \in \mathcal{Q}$ is the question answered at step $t$, $C_t \subseteq \mathcal{C}$ is the set of KCs covered by $q_t$, $m_t = |C_t|$, and $r_t \in \{0, 1\}$ represents the accuracy of the response; $r_t = 0$ indicates an incorrect response, while $r_t = 1$ indicates a correct response.
+The KCs of question $q_t$ form an ordered set $C_t = \{c_{t,1}, \dots, c_{t,m_t}\}$. A question with $m_t > 1$ is a \emph{multi-knowledge-component (multi-KC) question}. Importantly, $r_t$ is a single label for the whole question, not one label per KC.
+Given the history $\mathcal{S}$, the model predicts the probability that the student answers the next question $q_{T+1}$ correctly, i.e.,
+\begin{equation}
+    P\big(r_{T+1} = 1 \mid q_{T+1}, C_{T+1}, \mathcal{S}\big).
+\end{equation}
+
+\subsection{The pyKT Protocol: Expanded Training and All-in-One Evaluation}
+
+We follow the pyKT benchmark protocol~\cite{liu2022pykt}, which trains models
+at the KC level but evaluates them at the question level.
+
+\textbf{Training.} Each question in set $S$ for which $m_t > 1$ (i.e., a question associated with multiple knowledge components) is expanded into a sequence of $m_t$ interactions: $(q_t, c_{t,1}, r_t), \dots, (q_t, c_{t,m_t}, r_t)$, where the response $r_t$ for each of these expanded interactions is derived from the original question itself. Models are trained on expanded sequences.
+
+\textbf{Evaluation.} Ground truth is observed only at the question level
+(one label $r_t$ per question, not per KC), so pyKT scores models on questions.
+Each KC of $q_t$ is predicted independently, using only the history before
+$q_t$, so that no KC prediction has access to $r_t$ through other KCs of the
+same question. The KC-level predictions are then aggregated into a single
+question-level prediction by late fusion; in this work we use mean fusion.
+
+\subsection{Intra-Question Label Leakage}
+
+Expanded training and all-in-one evaluation do not condition on the same information. In the expanded sequence, the $j$-th KC of question $q_t$ with $j > 1$ is predicted after the interactions $(q_t, c_{t,1}, r_t), \dots, (q_t, c_{t,j-1}, r_t)$ have been read, so the input already contains the label $r_t$ to be predicted. Only the first KC of each question is free of this leakage. At evaluation, all KCs of $q_t$ are predicted from the history before $q_t$, so $r_t$ is never visible. A model can therefore learn the shortcut of copying the label of the preceding token whenever it infers that the two KCs belong to the same question, instead of inferring $r_t$ from the student's history. This shortcut is useless at test time and degrades question-level performance. The effect grows with the number of KCs per question and with the correlation between co-occurring KCs~\cite{DBLP:conf/csedu/BadranP25a}.
