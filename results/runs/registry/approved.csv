@@ -105,3 +105,8 @@ SIMPLEKT_pyKT_f2_s42_20261029-1742,SIMPLEKT,pyKT,2,42,NhatAnh,2026-11-05,f4e1f43
 SIMPLEKT_pyKT_f3_s42_20261029-2023,SIMPLEKT,pyKT,3,42,NhatAnh,2026-11-05,f4e1f43,Bảng 6.7; ba điều kiện của cổng; check_same_test,
 SIMPLEKT_pyKT_f4_s42_20261029-2313,SIMPLEKT,pyKT,4,42,NhatAnh,2026-11-05,f4e1f43,Bảng 6.7; ba điều kiện của cổng; check_same_test,
 QIKT_pyKT_f0_s42_20261101-0718,QIKT,pyKT,0,42,NhatAnh,2026-11-05,f4e1f43,Bảng 6.7; ba điều kiện của cổng; check_same_test,
+QIKT_pyKT_f1_s42_20261103-0954,QIKT,pyKT,1,42,NhatAnh,2026-11-08,174cfe088dbff215710d931d1b5cc9cce62413fe,Bảng 6.7; ba điều kiện của cổng,
+QIKT_pyKT_f2_s42_20261103-1049,QIKT,pyKT,2,42,NhatAnh,2026-11-08,174cfe088dbff215710d931d1b5cc9cce62413fe,Bảng 6.7; ba điều kiện của cổng,
+QIKT_pyKT_f3_s42_20261103-1143,QIKT,pyKT,3,42,NhatAnh,2026-11-08,174cfe088dbff215710d931d1b5cc9cce62413fe,Bảng 6.7; ba điều kiện của cổng,
+QIKT_pyKT_f4_s42_20261103-1238,QIKT,pyKT,4,42,NhatAnh,2026-11-08,174cfe088dbff215710d931d1b5cc9cce62413fe,Bảng 6.7; ba điều kiện của cổng,
+SIMPLEKT_C_f0_s42_20261104-0831,SIMPLEKT,C,0,42,NhatAnh,2026-11-08,174cfe088dbff215710d931d1b5cc9cce62413fe,"Bảng 6.3 (02/11); test_qmask 5/5 GPU; G2, G3",
