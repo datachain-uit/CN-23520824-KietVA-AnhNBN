@@ -1,0 +1,38 @@
+2026-11-03 13:12:27 - QIKT - said: emb_type is iekt
+emb_type is iekt
+Start preprocessing ../data/peiyou/qlevel_shards/qwin_8s_0.csv fold: _-1...
+interaction_num: 137361
+file path: ../data/peiyou/qlevel_shards/qwin_8s_0.csv, qlen: 47413, clen: 47413, rlen: 47413
+shard 0: 136909 câu
+Start preprocessing ../data/peiyou/qlevel_shards/qwin_8s_1.csv fold: _-1...
+interaction_num: 138651
+file path: ../data/peiyou/qlevel_shards/qwin_8s_1.csv, qlen: 48703, clen: 48703, rlen: 48703
+shard 1: 138199 câu
+Start preprocessing ../data/peiyou/qlevel_shards/qwin_8s_2.csv fold: _-1...
+interaction_num: 136601
+file path: ../data/peiyou/qlevel_shards/qwin_8s_2.csv, qlen: 46653, clen: 46653, rlen: 46653
+shard 2: 136149 câu
+Start preprocessing ../data/peiyou/qlevel_shards/qwin_8s_3.csv fold: _-1...
+interaction_num: 139016
+file path: ../data/peiyou/qlevel_shards/qwin_8s_3.csv, qlen: 49068, clen: 49068, rlen: 49068
+shard 3: 138564 câu
+Start preprocessing ../data/peiyou/qlevel_shards/qwin_8s_4.csv fold: _-1...
+interaction_num: 136870
+file path: ../data/peiyou/qlevel_shards/qwin_8s_4.csv, qlen: 46922, clen: 46922, rlen: 46922
+shard 4: 136418 câu
+Start preprocessing ../data/peiyou/qlevel_shards/qwin_8s_5.csv fold: _-1...
+interaction_num: 140027
+file path: ../data/peiyou/qlevel_shards/qwin_8s_5.csv, qlen: 50278, clen: 50278, rlen: 50278
+shard 5: 139576 câu
+Start preprocessing ../data/peiyou/qlevel_shards/qwin_8s_6.csv fold: _-1...
+interaction_num: 137664
+file path: ../data/peiyou/qlevel_shards/qwin_8s_6.csv, qlen: 47915, clen: 47915, rlen: 47915
+shard 6: 137213 câu
+Start preprocessing ../data/peiyou/qlevel_shards/qwin_8s_7.csv fold: _-1...
+interaction_num: 136620
+file path: ../data/peiyou/qlevel_shards/qwin_8s_7.csv, qlen: 46871, clen: 46871, rlen: 46871
+shard 7: 136169 câu
+3613 học sinh, 1099197 câu hỏi được chấm
+window_testauc = 0.820516
+window_testacc = 0.829261
+predict_s=1186
