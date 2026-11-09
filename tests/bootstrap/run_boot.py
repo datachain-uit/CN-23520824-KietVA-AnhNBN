@@ -1,9 +1,13 @@
 # run_boot.py – bootstrap cho N1, N2, đọc preds theo registry (thay run_boot.ipynb rỗng)
 # Đặt trong tests/bootstrap/, cạnh boot_metrics.py (Khung 4.8 ngày 25/10). --runs_root
 # là bản sao thư mục runs/ trên Drive (có preds.parquet); chép registry.csv của repo vào
-# <runs_root>/registry/. Chạy ở gốc repo (bản 28/10):
+# <runs_root>/registry/. Chạy ở gốc repo (bản 02/11: thêm --pairs, --strata_pairs và
+# --approved results/runs/registry/approved.csv để chỉ dùng các lần chạy đã duyệt):
 #   python tests/bootstrap/run_boot.py --runs_root <bản sao runs> --seed 42 \
 #       --out tests/bootstrap/out/boot_s42
+# simpleKT-C so với simpleKT của pyKT (biến thể pyKT), seed 42:
+#   python tests/bootstrap/run_boot.py --runs_root <bản sao runs> --model SIMPLEKT \
+#       --pairs C:pyKT --strata_pairs C:pyKT --out tests/bootstrap/out/boot_skt_s42
 # Ghi 3 file: <out>_pairs.csv (mọi cặp, mọi fold), <out>_strata.csv (theo nhóm câu, cả
 # nhóm chéo câu × câu trước), <out>_kcpos.csv (AUC mức KC theo vị trí KC, câu nhiều KC).
 import argparse, os
@@ -29,9 +33,18 @@ def kc_position_auc(raw):
             for g in ("KC đầu", "KC 2+")}
 
 
+def parse_pairs(s):
+    """'C:pyKT,ML:A' -> [('C', 'pyKT'), ('ML', 'A')], nghĩa là C − pyKT, ML − A."""
+    return [tuple(x.split(":")) for x in s.split(",")] if s else None
+
+
 def main(a):
+    pairs_l = parse_pairs(a.pairs) or PAIRS
+    strata_l = parse_pairs(a.strata_pairs) or ([] if a.pairs else STRATA_PAIRS)
     reg = pd.read_csv(os.path.join(a.runs_root, "registry", "registry.csv"))
     reg = reg[(reg["model"] == a.model) & (reg["seed"] == a.seed)].copy()
+    if a.approved:
+        reg = reg[reg["run_id"].isin(pd.read_csv(a.approved)["run_id"])]
     reg["fold"] = reg["fold"].astype(int)
     assert not reg.duplicated(["variant", "fold"]).any(), "(biến thể, fold) bị trùng"
     pairs, strat, kcpos = [], [], []
@@ -39,7 +52,7 @@ def main(a):
         r = r.set_index("variant")
         load = lambda v, col="preds_path": pd.read_parquet(
             os.path.join(a.runs_root, r.loc[v, col]))
-        for b, c in PAIRS + [x for x in STRATA_PAIRS if x not in PAIRS]:
+        for b, c in pairs_l + [x for x in strata_l if x not in pairs_l]:
             if b not in r.index or c not in r.index:
                 continue
             qa, qb = load(c), load(b)
@@ -47,13 +60,13 @@ def main(a):
             lb = qb.set_index("qidx")["y_true"].astype("int64")
             assert len(la) == len(lb) and la.equals(lb.reindex(la.index)), \
                 f"{b}, {c}: khác nhãn hoặc khác tập câu – kiểm tra Dataset (Khung 4.6)"
-            if (b, c) in PAIRS:
+            if (b, c) in pairs_l:
                 res = paired_bootstrap(qa, qb, a.n_boot, seed=fold)
                 res.insert(0, "so_sanh", f"{b} − {c}")
                 res.insert(0, "fold", fold)
                 res["run_a"], res["run_b"] = r.loc[c, "run_id"], r.loc[b, "run_id"]
                 pairs.append(res)
-            if (b, c) in STRATA_PAIRS:
+            if (b, c) in strata_l:
                 s = strata(qa)
                 s["cheo"] = s["cau"] + " / trước " + s["cau_truoc"]   # tách chéo, mục 2.3
                 for col in ("cau", "cau_truoc", "cheo"):
@@ -86,4 +99,7 @@ if __name__ == "__main__":
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--n_boot", type=int, default=1000)
     ap.add_argument("--out", default="tests/bootstrap/out/boot_s42")
+    ap.add_argument("--pairs", default="")           # rỗng: các cặp DKT như cũ
+    ap.add_argument("--strata_pairs", default="")
+    ap.add_argument("--approved", default="")       # rỗng: dùng mọi dòng của registry
     main(ap.parse_args())
