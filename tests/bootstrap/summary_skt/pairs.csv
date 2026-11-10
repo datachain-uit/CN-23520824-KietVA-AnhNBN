@@ -1,0 +1,4 @@
+so_sanh,metric,hieu_tb,nho_nhat,lon_nhat,tot_hon,ci_tot,ci_kem,so_lan_chay,so_cau_tb,muc,nhan_xet
+C − pyKT,ΔAUC,0.00431,0.00393,0.00498,5,5,0,5,1099197,rõ,b tốt hơn ở 5/5 lần; CI loại trừ 0 ở 5/5
+C − pyKT,ΔBrier,-0.00199,-0.00226,-0.00181,5,5,0,5,1099197,rõ,b tốt hơn ở 5/5 lần; CI loại trừ 0 ở 5/5
+C − pyKT,ΔECE,-0.01106,-0.0149,-0.00705,5,5,0,5,1099197,rõ,b tốt hơn ở 5/5 lần; CI loại trừ 0 ở 5/5
