@@ -1,0 +1,12 @@
+so_sanh,nhom,hieu_tb,nho_nhat,lon_nhat,tot_hon,ci_tot,ci_kem,so_lan_chay,so_cau_tb,muc,nhan_xet
+C − pyKT,cau=1 KC,-0.00265,-0.00332,-0.00173,0,0,5,5,961716,rõ,b kém hơn ở 5/5 lần; CI loại trừ 0 ở 5/5
+C − pyKT,cau=nhiều KC,0.02422,0.02365,0.025,5,5,0,5,137481,rõ,b tốt hơn ở 5/5 lần; CI loại trừ 0 ở 5/5
+C − pyKT,cau_truoc=1 KC,0.00226,0.00183,0.00293,5,5,0,5,958925,rõ,b tốt hơn ở 5/5 lần; CI loại trừ 0 ở 5/5
+C − pyKT,cau_truoc=không rõ,0.00866,0.00624,0.01059,5,5,0,5,3613,rõ,b tốt hơn ở 5/5 lần; CI loại trừ 0 ở 5/5
+C − pyKT,cau_truoc=nhiều KC,0.0161,0.01533,0.01666,5,5,0,5,136659,rõ,b tốt hơn ở 5/5 lần; CI loại trừ 0 ở 5/5
+C − pyKT,cheo=1 KC / trước 1 KC,-0.00306,-0.0037,-0.00212,0,0,5,5,865139,rõ,b kém hơn ở 5/5 lần; CI loại trừ 0 ở 5/5
+C − pyKT,cheo=1 KC / trước không rõ,-0.00122,-0.00257,0.00052,1,0,0,5,3326,chưa phân biệt,"đổi dấu: b tốt hơn 1/5; CI tốt 0, CI kém 0"
+C − pyKT,cheo=1 KC / trước nhiều KC,0.00096,7e-05,0.00167,5,2,0,5,93251,xu hướng,b tốt hơn ở 5/5 lần; CI loại trừ 0 ở 2/5
+C − pyKT,cheo=nhiều KC / trước 1 KC,0.02455,0.02385,0.02547,5,5,0,5,93786,rõ,b tốt hơn ở 5/5 lần; CI loại trừ 0 ở 5/5
+C − pyKT,cheo=nhiều KC / trước không rõ,0.03991,0.02838,0.0536,5,3,0,5,287,rõ,b tốt hơn ở 5/5 lần; CI loại trừ 0 ở 3/5
+C − pyKT,cheo=nhiều KC / trước nhiều KC,0.02232,0.02123,0.02333,5,5,0,5,43408,rõ,b tốt hơn ở 5/5 lần; CI loại trừ 0 ở 5/5
