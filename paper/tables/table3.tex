@@ -1,0 +1,18 @@
+\begin{tabular}{@{}l l c c c@{}}
+\toprule
+Comparison ($b-a$) & $\Delta$AUC [min; max] & CI & $\Delta$Brier & $\Delta$ECE \\
+\midrule
+DKT-ML $-$ DKT (i) & \textbf{+0.00448} [+0.00410; +0.00506] & 15 / 0 & \textbf{$-$0.00136} & \textbf{$-$0.00544} \\
+DKT-ML-PQC $-$ DKT-ML (ii) & \textbf{+0.00109} [+0.00046; +0.00148] & 15 / 0 & \textbf{$-$0.00029} & $-$0.00092 \\
+DKT-PQC $-$ DKT-ML-PQC (label) & \textbf{$-$0.00058} [$-$0.00121; $-$0.00005] & 0 / 10 & +0.00014 & $-$0.00005 \\
+DKT-PQC $-$ DKT (total) & \textbf{+0.00499} [+0.00473; +0.00543] & 15 / 0 & \textbf{$-$0.00151} & \textbf{$-$0.00641} \\
+\midrule
+DKT-ML-PQC $-$ DKT & \textbf{+0.00557} [+0.00510; +0.00606] & 15 / 0 & \textbf{$-$0.00165} & \textbf{$-$0.00636} \\
+DKT-Fuse $-$ DKT & \textbf{+0.00533} [+0.00483; +0.00568] & 15 / 0 & \textbf{$-$0.00161} & \textbf{$-$0.00696} \\
+DKT-Fuse $-$ DKT-PQC & \textbf{+0.00034} [+0.00010; +0.00061] & 8 / 0 & \textbf{$-$0.00010} & $-$0.00055 \\
+DKT-Fuse $-$ DKT-ML-PQC & $-$0.00024 [$-$0.00059; +0.00026] & 0 / 6 & +0.00004 & $-$0.00060 \\
+\midrule
+DKT-PQC $-$ DKT, leak-free selection & \textbf{+0.00506} [+0.00465; +0.00560] & 15 / 0 & \textbf{$-$0.00153} & \textbf{$-$0.00647} \\
+DKT, leak-free selection $-$ DKT & $-$0.00007 [$-$0.00056; +0.00029] & 1 / 3 & +0.00002 & +0.00006 \\
+\bottomrule
+\end{tabular}
