@@ -1,0 +1,46 @@
+\subsection{Dataset, Models and Metrics}
+\label{subsec:data}
+We use XES3G5M~\cite{liu2023xes3g5m}, collected from an online mathematics platform for K-12 students in China: 5\,549\,635 interactions from 18\,066 students on 7\,652 questions, annotated with 865 leaf-node KCs.
+A question has on average 1.1640 KCs, so multi-KC questions are a minority but not negligible: 12.5\% of the graded questions (those scored in the metrics, 137\,481 of 1\,099\,197) have more than one KC, and these are the cases where intra-question leakage can occur.
+We evaluate on a fixed test set of 3\,613 students.
+ 
+The five DKT variants of Table~\ref{tab:design} share the same hyperparameters and are trained with 3 seeds (42--44) $\times$ 5 folds, i.e.\ 15 runs per variant. 
+We also run the pyKT default configuration with 5 folds and seed 42 (5 runs per model) for DKT, simpleKT, simpleKT-PQC, AKT and QIKT; simpleKT-PQC differs from simpleKT only by the mask of Eq.~\eqref{eq:skt-pqc}, and QIKT (one step per question) is a question-level reference. 
+No hyperparameter was tuned. We report mean and sd over runs.
+ 
+All models are evaluated with the all-in-one protocol of Section~\ref{subsec:pyKT-protocol}, and all metrics are computed at the question level, with one probability $\hat p_t$ (mean late fusion) and one label $y_t=r_t$ per question: \textbf{AUC} (main metric); \textbf{Brier} $\frac1N\sum_t(\hat p_t-y_t)^2$; \textbf{ECE} with 10 equal-width bins; and \textbf{AUPRC-wrong}, the area under the precision--recall curve with the incorrect response as the positive class and $1-\hat p_t$ as score. 
+Higher is better for AUC and AUPRC-wrong, lower for Brier and ECE.
+ 
+\paragraph{Implementation.}
+We use pyKT (commit \texttt{eec087e}, with a question-mask option for simpleKT-PQC and a device fix for QIKT) on one NVIDIA T4 GPU (Kaggle); the checkpoint is the epoch with the best KC-level validation AUC of pyKT, except for the leak-free selection control. All models are trained with Adam and early stopping on validation AUC (patience 10); other hyperparameters are the pyKT defaults. The DKT variants use pyKT's \texttt{is\_repeat} flag and do not merge repeated attempts; simpleKT-PQC does (Sect.~\ref{subsec:int-simpleKT}). The pre-registered check counted merged positions over all positions of the
+test file, graded or not: 1.04\%, above the 1\% threshold set before the runs,
+which is recorded as a deviation (0.79\% on the training file). The 0.95\% of
+Sect.~\ref{subsec:int-simpleKT} is the same phenomenon counted on graded questions only.
+
+\subsection{Statistical Testing}
+\label{subsec:boot}
+We use a paired bootstrap that resamples students, because the questions of one student are correlated.
+For two runs $a$ and $b$ on the same fold and seed, we draw 1\,000 replicates and weight every question by the resampling weight of its student.
+In each replicate we compute $\Delta=\mathrm{metric}(b)-\mathrm{metric}(a)$ for AUC, Brier score and ECE.
+We report $\Delta$ on the full test set together with the 95\% percentile interval (CI) over the replicates. 
+Each comparison yields 15 differences (5 for the pyKT runs), summarized by mean, minimum, maximum and the number of runs whose CI excludes 0. 
+A difference is \emph{clear} if it has the same sign in all runs and its CI excludes 0 in at least 8 of 15 runs (3 of 5), a \emph{trend} if it has the same sign but the CI excludes 0 in fewer runs and \emph{not distinguishable} if the sign changes between runs. 
+Only clear differences are set in bold. 
+The comparisons follow Section~\ref{subsec:rule-origin}: the steps DKT $\to$ DKT-ML $\to$ DKT-ML-PQC $\to$ DKT-PQC (evaluated on the same questions, so their $\Delta$ values add up to DKT-PQC $-$ DKT), the implementations of PQC against DKT and each other, and simpleKT-PQC against simpleKT.
+ 
+\paragraph{Mechanism analyses.}
+To check the mechanism, we repeat the paired bootstrap on subsets of the test questions defined by two labels. The target label says whether the predicted question has a single KC or multiple KCs. The previous label says whether the question immediately before it has a single KC or multiple KCs, or is unknown; it is unknown when the predicted question is the first graded question of its student (3\,613 questions).
+We cut the test set by the target label alone (2 subsets), by the previous label alone (3 subsets), and by both crossed ($2\times 3=6$ subsets), giving 11 subsets in total. Table~\ref{tab:strata} reports 9 of them; the two previous-only cuts for a single-KC or a multi-KC previous question are unions of crossed subsets and are omitted.
+If leakage is the cause, the gain should concentrate where the predicted question has several KCs.
+
+As a second diagnostic, we report the KC-level AUC separately for the first KC and for the second and later KCs of multi-KC questions. Under standard training only the later KCs can see $r_t$, so a leaking model should be worse on them. It is never used to rank models. 
+ 
+\subsection{Sanity Checks for Leakage}
+\label{subsec:sanity}
+Five checks verify that label copying is the cause and that the PQC variants do not leak (fold 0, seed 42). The intervention test is run on DKT and DKT-PQC, the other checks on the five DKT variants. 
+\emph{Global shuffle} permutes the training labels over the whole set (validation AUC should be about 0.5). 
+\emph{Shuffle by question} permutes question-level labels and copies each to all KCs of its question: the history carries no signal, but a leaking model can exceed 0.5 by copying the preceding KC. 
+We report the best KC-level validation AUC and the test Brier score (random-label models output almost constant probabilities). 
+\emph{Overfitting}: each variant must fit 4 training sequences, so low scores under shuffling do not reflect an inability to learn. 
+\emph{Intervention test}: in a trained model we flip the label of one random multi-KC question with a next question, in each of 32 training sequences (5 draws), and record the largest change of prediction on the KCs of that question (\texttt{inside}) and on the next question (\texttt{after}); without leakage $\texttt{inside}\le10^{-6}$, and $\texttt{after}>0$ shows the history is still used. 
+\emph{Positive control}: standard DKT must be flagged as leaking and DKT-PQC must pass.

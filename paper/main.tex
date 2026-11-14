@@ -4,7 +4,7 @@
 % T1 fonts will be used to generate the final print and online PDFs,
 % so please use T1 fonts in your manuscript whenever possible.
 % Other font encondings may result in incorrect characters.
-
+\usepackage{makecell}
 \usepackage{amsmath}
 
 \usepackage{graphicx}
@@ -33,6 +33,8 @@
   anchorcolor=blue
 }
 
+\usepackage{amsmath, amssymb}
+
 \usepackage{orcidlink}
 \renewcommand{\orcidID}[1]{\,\orcidlink{#1}}
 
@@ -41,6 +43,8 @@
 \newcolumntype{R}[1]{>{\raggedleft\arraybackslash}m{#1}}
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 
+\renewcommand{\UrlFont}{\color{blue}\rmfamily}
+
 \begin{document}
 
 \title{Intra-Question Label Leakage in Knowledge Tracing with Multi-KC Questions: A Controlled Study on XES3G5M}
@@ -48,31 +52,30 @@
 
 % TODO: xác nhận danh sách, thứ tự và email với thầy/cô
 \author{
-Nhat-Anh Bui Nguyen\inst{1,4} \and
+Nhat-Anh Nguyen-Bui\inst{1,4} \and
 Anh-Kiet Vo\inst{1,4} \and
-Thu Nguyen\inst{1,4}~\textsuperscript{(\Letter)}\orcidID{0000-0002-6577-0159} \and
+Thu Nguyen\inst{1,4}~\textsuperscript{(\Letter)}\orcidID{0000-0002-0571-2117} \and
 Khoa Tan Vo\inst{1,4}\orcidID{0000-0002-5343-1686} \and
 Phuc Nguyen\inst{2,4}\orcidID{0000-0002-6577-0159} \and
 Tu-Anh Nguyen-Hoang\inst{3,4}\orcidID{0000-0001-9283-769X}
 }
-\authorrunning{N.-A. Bui Nguyen et al.}
-
+\authorrunning{N.-A. Nguyen-Bui et al.}
 
 \institute{Faculty of Information Science and Engineering, University of Information Technology, Ho Chi Minh City, Vietnam \and
 Faculty of Information Systems, University of Economics and Law, Ho Chi Minh City, Vietnam \and
 Information Security Laboratory, University of Information Technology, Ho Chi Minh City, Vietnam \and
 Vietnam National University, Ho Chi Minh City, Vietnam
 \\
-\email{\{23520056,23520824\}@gm.uit.edu.vn, \{thunta,khoavt\}@uit.edu.vn, phucnq@uel.edu.vn, anhnht@uit.edu.vn}
-\\[3pt]\textsuperscript{(\Letter)}\,Corresponding author: Thu Nguyen (thunta@uit.edu.vn)}
+\email{\{23520056,23520824\}@gm.uit.edu.vn, \{thunta,khoavt\}@uit.edu.vn, phucnq@uel.edu.vn, anhnht@uit.edu.vn}}
+% \\[3pt]\textsuperscript{(\Letter)}\,Corresponding author: Thu Nguyen (thunta@uit.edu.vn)}
 
 
 \maketitle
 
 \begin{abstract}
-ABSTRACT. % 150--250 từ; khung 7 câu ở mục 7.3 của nhận xét
+Knowledge tracing (KT) predicts whether a student will answer the next question correctly. Many KT models expand a question with several knowledge components (KCs) into one training token per KC, each carrying the question's label. The pyKT benchmark trains this way but evaluates every KC from the history before the question. This mismatch lets the model read the label it must predict and learn to copy it from the second KC on. We propose Pre-Question Conditioning (PQC), a training rule rather than an architecture change: a question's label must not enter the state used to predict it, and all its KCs are predicted from the state before the question. On XES3G5M, standard DKT has an AUC 0.098 lower on the second and later KCs of multi-KC questions than on the first. PQC raises question-level AUC from 0.7841 to 0.7891 (+0.0050, all 15 runs) and lowers ECE from 0.0111 to 0.0047. Removing the label from the context gives +0.0045, reading the pre-question state a further +0.0011. The gain is concentrated in multi-KC questions (+0.032 AUC versus +0.001 on single-KC questions). Controls on DKT (shuffled labels, intervention test) support copying and show that PQC variants do not leak. On simpleKT, the same rule raises AUC from 0.8121 to 0.8164 (+0.0043, 5 of 5 folds) and removes the gap between first and later KCs, with indirect evidence for the mechanism. It lowers AUC on single-KC questions ($-$0.0027), mostly on immediate repeats, which our segment convention hides from the model.
 
-\keywords{x \and x \and x \and x}
+\keywords{Knowledge Tracing \and Label leakage \and Multi-KC questions \and Evaluation Protocol \and Training Rule}
 \end{abstract}
 
 \section{Introduction}
@@ -95,7 +98,8 @@ The authors have no competing interests to declare that are relevant to
 the content of this article.
 \end{credits}
 
-\bibliographystyle{splncs04}
+% \bibliographystyle{splncs04}
+\bibliographystyle{splncs04-citeorder}
 \bibliography{ref}
 
 \end{document}
