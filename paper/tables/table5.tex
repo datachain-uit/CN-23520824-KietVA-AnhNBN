@@ -1,0 +1,12 @@
+\begin{tabular}{@{}l c c c c c@{}}
+  \toprule
+  Check & DKT & DKT-PQC & DKT-ML & DKT-ML-PQC & DKT-Fuse \\
+  \midrule
+  Intervention, inside / after           & 1.00 / 0.80 (leaks) & 0 / 0.76 (pass) & -- & -- & -- \\
+  Overfit 4 sequences, loss after 300 steps & 0.0013 & 0.0013 & 0.0013 & 0.0013 & 0.0014 \\
+  Shuffle by question: best val.\ AUC    & 0.6250 & 0.5005 & 0.5004 & 0.5002 & 0.5008 \\
+  Shuffle by question: test Brier        & 0.1631 & 0.1625 & 0.1626 & 0.1627 & 0.1631 \\
+  Global shuffle: best val.\ AUC         & 0.5010 & 0.5007 & 0.5011 & 0.5012 & 0.5009 \\
+  Global shuffle: test Brier             & 0.1630 & 0.1630 & 0.1627 & 0.1628 & 0.1629 \\
+  \bottomrule
+\end{tabular}%

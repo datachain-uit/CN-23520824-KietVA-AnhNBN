@@ -1,0 +1,15 @@
+\paragraph{KT models}
+DKT~\cite{piech2015deep} reads the sequence of (KC, label) pairs with an LSTM. 
+DKVMN~\cite{zhang2017dynamic} adds a key--value memory, SAKT~\cite{pandey2019self} replaces the recurrence by attention, AKT~\cite{ghosh2020context} adds monotonic attention with a Rasch-style question difficulty, and simpleKT~\cite{DBLP:conf/iclr/0001L0H023} uses standard attention with a question difficulty vector. 
+Question-level models such as QIKT~\cite{chen2023improving} use one step per question, so they have no intra-question label leakage by construction, but they change the architecture and the input. 
+Our rule targets KC-level models, which remain widely used and can be corrected without such a change; in pyKT's expanded sequences, recurrent and attention mechanisms read the earlier KC tokens of the same question, and we measure this only for DKT and simpleKT.
+ 
+\paragraph{Multi-KC questions, label leakage and protocols.}
+Xiong et al.~\cite{xiong2016going} observed that DKT benefits from repeated rows of multi-skill questions (average AUC 0.81 against 0.74 with one row per question on ASSISTments 2009--2010). 
+Badran and Preisach~\cite{DBLP:conf/csedu/BadranP25a} name label leakage in KC expansion and propose a masked label for the KCs before the last one (DKT-ML), a fused update with one step per question (DKT-Fuse) and a question mask in attention (AKT-QM), the journal extension~\cite{badran2026enhancing} adds further variants (DKT-ML+, SAKT-ML, AKT-Fuse). 
+They also propose an autoregressive variant (DKT-AD) and report that leakage grows with the number of KCs per question; in their KTbench evaluation the leaking baselines are tested all-in-one and the leak-free variants one-by-one. 
+pyKT~\cite{liu2022pykt} standardizes KT evaluation (expanded training, all-in-one late fusion at test time), which makes numbers comparable but leaves training and evaluation different in what the model can read. 
+We keep the pyKT protocol on XES3G5M~\cite{liu2023xes3g5m}, which provides pyKT baselines.
+ 
+\paragraph{Position of this work.}
+The variants of Badran and Preisach~\cite{badran2026enhancing} are taken here as design points, not claimed as our own. This work differs in three ways. First, the remedy is split into two conditions, and their effects are measured separately. Second, every model, leak-free variants included, is evaluated with the same pyKT all-in-one protocol on XES3G5M, with 3 seeds, 5 folds and a bootstrap over students. Third, the remedy is stated as a rule on the context of each prediction, which applies to both a recurrent and an attention backbone while keeping the per-KC loss. We do not propose a new architecture or aim to outperform AKT, simpleKT or QIKT.

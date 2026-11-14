@@ -1,130 +1,89 @@
-Section 3.3 shows that expanded training allows a model to read $r_t$
-before predicting the later KCs of $q_t$, whereas all-in-one evaluation never
-does. Therefore, the training process should limit the input infomation for each KC prediction such that the KC being predicted does not utilize information from other KCs within the same question. The resulting rule is called Pre-Question Conditioning (PQC). PQC constrains what the model may read; it is not a new architecture. Sections 4.2 and 4.3 show how to enforce it in a recurrent and in an attention backbone, and Section 4.4 states which parts come from prior work.
+Training should limit what each KC prediction reads, since expanded training lets a model read $r_t$ before predicting later KCs of $q_t$ while evaluation never does. We call the resulting rule Pre-Question Conditioning (PQC); it constrains the input of the model and is not a new architecture.
 
 \subsection{The Rule}
-\label{sec:rule-def}
-
-Let $S_{<t}$ be the interactions of questions $q_1,\dots,q_{t-1}$, and let
-$\mathcal{X}_{t,j}$ be what the model reads, besides $(q_t,c_{t,j})$, when it
-predicts the $j$-th KC of $q_t$. Expanded training uses
-\begin{equation}
-  \mathcal{X}^{\mathrm{exp}}_{t,j}
-  = S_{<t} \cup \{(q_t,c_{t,i},r_t)\}_{i<j},
-  \label{eq:ctx-exp}
-\end{equation}
-while all-in-one evaluation uses
-\begin{equation}
-  \mathcal{X}^{\mathrm{eval}}_{t,j} = S_{<t}.
-  \label{eq:ctx-eval}
-\end{equation}
-PQC requires, for every question $q_t$ and every $j \le m_t$:
+\label{subsec:rule-def}
+Evaluation uses the context $\mathcal{X}^{\mathrm{eval}}_{t,j}=\tilde{\mathcal{S}}_{<t}$. PQC requires, for every $q_t$ and $j\le m_t$:
 \begin{enumerate}
-  \item[(i)] During training, the label of a sentence is not included in the state used to predict the KC of that same question: $\mathcal{X}_{t,j}$ must not contain information
-        $r_t$.
-  \item[(ii)] All KCs of a question are predicted from the student’s state before that question, in line with the all-in-one protocol used for evaluation: all KCs of $q_t$ are predicted from
-        the same context, the history before $q_t$, as in
-        Eq.~\eqref{eq:ctx-eval}.
+  \item[(i)] during training, $\mathcal{X}_{t,j}$ contains no information about $r_t$;
+  \item[(ii)] all KCs of $q_t$ are predicted from the same context as at evaluation, the history before $q_t$.
 \end{enumerate}
-Requirement (ii) implies requirement (i), so the two are nested. Requirement (i) alone prevents the model from simply copying the label. Requirement (ii) goes further and makes the training context exactly the same as the evaluation context. The two are stated separately because some implementations meet (i) but not (ii) (DKT-ML below), which makes it possible to measure the contribution of each step.
-Under PQC we train with the per-KC binary cross-entropy
+Condition (ii) implies (i); they are stated separately because some implementations meet (i) but not (ii) (DKT-ML below). Training uses the per-KC cross-entropy,
 \begin{equation}
-  \mathcal{L} = -\sum_{t}\sum_{j=1}^{m_t}
-  \Big[ r_t \log \hat p_{t,j} + (1-r_t)\log(1-\hat p_{t,j}) \Big],
-  \qquad
-  \hat p_{t,j} = P\big(r_t = 1 \mid q_t, c_{t,j}, \mathcal{X}_{t,j}\big),
+  \mathcal{L}=-\sum_{t}\sum_{j=1}^{m_t}\big[r_t\log\hat p_{t,j}+(1-r_t)\log(1-\hat p_{t,j})\big],\quad
+  \hat p_{t,j}=P(r_t=1\mid q_t,c_{t,j},\mathcal{X}_{t,j}).
   \label{eq:loss}
 \end{equation}
-and evaluate exactly as in Section 3.2 (independent KC predictions, mean fusion).
-Because $r_t$ is given to the model only after all $m_t$ predictions for $q_t$
-have been made, the model cannot copy the preceding label. If every question has
-a single KC, the rule changes nothing. It matters for training only when a
-question has multiple KCs, either through its own rows or through the state it
-leaves for later questions..
+With one KC per question the rule changes nothing: the only context is already the history before $q_t$.
 
-\subsection{Instantiation on Deep Knowledge Tracing}
-Deep Knownledge Tracing (DKT) [cite] reads a sequence of tuple $(c, r)$, where $c$ is a KC and $r$ is the response to the question associated with KC $c$. Following Section 3.2, a question $q_t$ is expanded into a sequence of tuple ${(c_{t,1}, r_t), (c_{t,2}, r_t), ..., (c_{t, m_t}, r_t)}$. Let $h_{t, j}$ be LSTM state after reading $j$-th token of $q_t$, with $h_{t, 0} = h_{t-1, m_{t-1}}$ the state left by the previous question. Each tuple $(c_{t,j}, r_t)$ is encoded as a vector $\mathbf{x}_{t,j} \in \mathbb{R}^{d}$ and
+\subsection{Instantiation on DKT}
+\label{subsec:ins-dkt}
+DKT~\cite{piech2015deep} embeds tokens $(c_{t,j},\rho_{t,j})$ as $\mathbf{x}_{t,j}$ and runs an LSTM, $\mathbf{h}_{t,j}=\mathrm{LSTM}(\mathbf{x}_{t,j},\allowbreak\mathbf{h}_{t,j-1})$, where $\mathbf{h}_{t-1}=\mathbf{h}_{t-1,m_{t-1}}=\mathbf{h}_{t,0}$ is the state left by the previous question. The output is $\mathbf{y}_{t,j}=\sigma(\mathbf{W}\mathbf{h}_{t,j}+\mathbf{b})\in[0,1]^{|\mathcal{C}|}$.
+
+\paragraph{DKT (baseline).} Every token carries $r_t$ and $\hat p_{t,j}=\mathbf{y}_{t,j-1}[c_{t,j}]$. For $j>1$ the context contains $r_t$, so (i) and (ii) fail.
+
+\paragraph{DKT, leak-free selection.} This control is trained exactly as DKT, so (i) and (ii) still fail during training. It differs only in how the checkpoint is chosen: the epoch is selected with the validation criterion of DKT-PQC, which reads no label of the question being predicted, instead of the standard criterion of DKT. It is a control, not a remedy: it tests whether the gain of PQC comes from the rule or only from checkpoint choice.
+
+\paragraph{DKT-ML.} A third label MASK replaces $\rho_{t,j}$ for all $j<m_t$ (only the last token keeps $r_t$), and targets stay $r_t$.
+(i) holds, but $c_{t,j}$ is still predicted after earlier KCs of $q_t$, so (ii) fails.
+Our MASK embedding adds $|\mathcal{C}|d$ parameters (Badran and Preisach use fewer).
+
+\paragraph{DKT-PQC (ours).} Tokens keep the true label and are read sequentially, but every KC of $q_t$ is predicted from the state before the question,
 \begin{equation}
-  \mathbf{h}_{t,j} = \mathrm{LSTM}\big(\mathbf{x}_{t,j},\, \mathbf{h}_{t,j-1}\big), \qquad
-  \mathbf{y}_{t,j} = \sigma\big(\mathbf{W}\mathbf{h}_{t,j} + \mathbf{b}\big).
+  \hat p_{t,j}=\sigma(\mathbf{W}\mathbf{h}_{t-1}+\mathbf{b})[c_{t,j}],\qquad \mathcal{X}_{t,j}=\tilde{\mathcal{S}}_{<t}.
 \end{equation}
+So (ii), hence (i), holds. The tokens of $q_t$ only update the state for $q_{t+1}$.
 
-\paragraph{DKT (baseline)} Every token carries the true label and the next token is predicted from the previous one:
+\paragraph{DKT-ML-PQC.} This variant uses MASK labels as in DKT-ML, with every KC predicted from $\mathbf{h}_{t-1}$. It differs from DKT-PQC only in what the state stores: $r_t$ on every KC token, or only on the last.
+
+\paragraph{DKT-Fuse.} This variant feeds the LSTM one token per question, namely the mean of its KC encodings, so that each question takes a single LSTM step: $\bar{\mathbf{x}}_t=\frac1{m_t}\sum_j\mathbf{x}_{t,j}$, $\mathbf{h}_t=\mathrm{LSTM}(\bar{\mathbf{x}}_t,\mathbf{h}_{t-1})$, $\hat p_{t,j}=\sigma(\mathbf{W}\mathbf{h}_{t-1}+\mathbf{b})[c_{t,j}]$. Both (i) and (ii) hold by construction. In contrast to Badran and Preisach, who average KC predictions before the loss, we keep one loss term per KC and average only at evaluation.
+
+\subsection{Instantiation on simpleKT}
+\label{subsec:int-simpleKT}
+simpleKT~\cite{DBLP:conf/iclr/0001L0H023} reads the expanded KC-level sequence. For each interaction: $(q_t,\allowbreak c_{t,j},\allowbreak \rho_{t,j})$, the query/key and value representations are computed as: $\mathbf{x}_{t,j}=\mathbf{z}_{c_{t,j}}+\mathbf{m}_{q_t}\odot\mathbf{v}_{c_{t,j}}$ and $\mathbf{y}_{t,j}=\mathbf{z}_{c_{t,j}}+\mathbf{g}_{\rho_{t,j}}$, respectively. Self-attention is applied over previous interactions, followed by a two-layer fully connected network and a sigmoid output layer to predict the probability of a correct response.
+In the original model, the $j$-th KC of question $q_t$ can attend to earlier KCs from the same question. Since these interactions already encode the response $r_t$ and share the same question embedding $\mathbf{m}_{q_t}$, the model can exploit them as a shortcut to infer the target label, violating assumptions (i) and (ii).
+\textbf{simpleKT-PQC} keeps the architecture and modifies only the readable positions, following AKT-QM; interactions belonging to $q_t$ are never read:
 \begin{equation}
-  \hat p_{t,j}=y_{t,j-1}[c_{t,j}],\qquad X_{t,j}=S_{<t}\cup\{(c_{t,i},r_t)\}_{i<j}.
+\mathbf{h}_{t,j}=\mathrm{SelfAttention}\big(Q=\mathbf{x}_{t,j},\,K=(\mathbf{x}_{s,i})_{s<t},\,V=(\mathbf{y}_{s,i})_{s<t}\big).
+  \label{eq:skt-pqc}
 \end{equation}
-For $j>1$ the state has already read $r_t$, so neither (i) nor (ii) holds. This is the leakage of Section 3.3.
-
-\paragraph{DKT-ML [cite].} The prediction rule is unchanged, but the label is hidden on every token except the last one of the question:
-$$\rho_{t,j}=\begin{cases}MASK & j<m_t\\ r_t & j=m_t\end{cases}\qquad X_{t,j}=S_{<t}\cup\{(c_{t,i},\bot)\}_{i<j}.$$
-Here $MASK$ is a mask symbol with its own input channel. Since $r_t$ is revealed only after the last KC, (i) holds. However, $c_{t,j}$ is still predicted after reading $c_{t,1},\dots,c_{t,j-1}$, so the context differs from evaluation and (ii) does not hold.
-
-\paragraph{DKT-C (PQC, ours).} Tokens keep the true label, $\rho_{t,j}=r_t$, and are still read sequentially, but every KC of $q_t$ is predicted from the state before the question:
-$$\hat p_{t,j}=y_{t-1,m_{t-1}}[c_{t,j}]=\sigma\!\big(Wh_{t,0}+b\big)[c_{t,j}],\qquad X_{t,j}=S_{<t}.$$
-Neither $r_t$ nor the other KCs of $q_t$ is visible to the prediction of $c_{t,j}$, so (ii), and therefore (i), holds. The tokens of $q_t$ still pass through the LSTM, but they only update the state used for $q_{t+1}$.
-
-\paragraph{DKT-ML-C.} This variant combines both changes: the labels are masked as in DKT-ML, $\rho_{t,j}=MASK$ for $j<m_t$, and every KC is predicted from $h_{t,0}$ as in DKT-C. The prediction context is the same as DKT-C, so (ii) holds. The two differ only in what the state stores for later questions: DKT-C keeps $r_t$ on every KC token, DKT-ML-C only on the last one.
-
-\paragraph{DKT-Fuse.}
-Instead of $m_t$ tokens, question $q_t$ is represented by a single token, obtained
-by averaging the encodings of its KC tokens, and the LSTM advances by one step per
-question:
-\begin{equation}
-  \bar{\mathbf{x}}_t = \frac{1}{m_t}\sum_{j=1}^{m_t}\mathbf{x}_{t,j},
-  \qquad
-  \mathbf{h}_t = \mathrm{LSTM}\big(\bar{\mathbf{x}}_t,\, \mathbf{h}_{t-1}\big),
-  \qquad
-  \mathbf{y}_t = \sigma\big(\mathbf{W}\mathbf{h}_t + \mathbf{b}\big).
-\end{equation}
-Every KC of $q_t$ is predicted from the state before the question,
-\begin{equation}
-  \hat p_{t,j} = \mathbf{y}_{t-1}[c_{t,j}], \qquad X_{t,j} = S_{<t},
-\end{equation}
-so neither $r_t$ nor the other KCs of $q_t$ is visible, and (i) and (ii) hold. The
-original fusion approach of Badran and Preisach~\cite{badran} averages the KC
-predictions into a question-level probability,
-$\hat p_t=\frac{1}{m_t}\sum_{j=1}^{m_t}\hat p_{t,j}$, and applies the binary
-cross-entropy to $\hat p_t$. We do not average before the loss: each KC receives its
-own term of Eq.~(4). Averaging is applied only at evaluation, as in
-Section~3.2.
+Unlike the DKT-based baselines, which follow pyKT by preserving the original interaction sequence and using an \texttt{is\_repeat} flag, simpleKT-PQC groups consecutive interactions with the same question ID into a single segment. Consequently, when all readable positions within a segment are masked, the interaction receives a zero-vector representation, as for the first row in the original simpleKT; this happens only when a student's very first interactions are repeated attempts on the same question.
+The merge has a side effect: when the second of two consecutive attempts at the same question is predicted, the first is hidden although it is legitimate history at test time. This concerns immediate repeats (10\,424 of the 1\,099\,197 graded questions, 0.95\%) and is the likely source of the loss in Sect.~\ref{subsec:res-skt}.
+So (ii), hence (i), holds.
+In Table~\ref{tab:design}, row $i$ is the target interaction $(t,j)$, row $k$ a past interaction that row $i$ may observe, and $g_i=t$.
 
 \subsection{Design Space and Provenance}
-\label{sec:rule-origin}
+\label{subsec:rule-origin}
+Table~\ref{tab:design} lists all variants.
+AKT-QM, DKT-ML and DKT-Fuse come from Badran and Preisach~\cite{DBLP:conf/csedu/BadranP25a,badran2026enhancing}, not from us.
+We add (a) the split of the rule into (i) and (ii), each measured separately, (b) DKT-PQC, a sequential implementation with one step per KC, and DKT-ML-PQC as an intermediate step, and (c) a controlled all-in-one evaluation on DKT and simpleKT, including the leak-free selection control.
+DKT-PQC also differs from the autoregressive DKT-AD of Badran and Preisach~\cite{DBLP:conf/csedu/BadranP25a}, which replaces earlier true labels by the model's own predictions and still predicts KC $j$ after them: it meets (i) but not (ii).
 
-Table~\ref{tab:design} lists all variants. The principle of hiding same-question
-interactions in attention was introduced as AKT-QM by Badran and
-Preisach~\cite{badran2025}; masked labels (DKT-ML) and fused updates
-(DKT-Fuse) also come from their work~\cite{badran2025,badran2026}. We do not
-claim these mechanisms. What we add is (a) stating the rule as two separate
-requirements, (i) and (ii), (b) DKT-PQC-Seq, which satisfies both without extra
-parameters, and DKT-PQC-Mask as an intermediate step, and (c) a controlled
-measurement of each step, and of the rule on simpleKT, under the all-in-one
-protocol of pyKT. Question-level models such as QIKT build one step per
-question, so they have no intra-question leakage by construction and are not
-the target of the rule. A further control, which changes only checkpoint
-selection, is described in Sect.~\ref{sec:setup}.
-
-\begin{table}[t]
-  \caption{Design space of the training rule. $h_{t,j-1}$ is the state after the
-  first $j-1$ KCs of $q_t$ and $h_{t-1}$ the state before $q_t$; (i) and (ii) are
-  the requirements of Sect.~\ref{sec:rule-def}. Parameter counts are for our
-  XES3G5M configuration.}
+\begin{table}[tbp]
+  \caption{Design space of the training rule. For DKT, $h_{t,j-1}$ is the state after the first $j-1$ KCs of $q_t$ and $h_{t,0}$ the state before $q_t$. For simpleKT, $i$ is the row being predicted, $k$ a row it may read, $g_i$ the question of row $i$. (i), (ii): Sect.~\ref{subsec:rule-def}. Parameters are for our configuration; the pyKT DKT (841,465) is a separate baseline in Table~\ref{tab:main}.}
   \label{tab:design}
   \centering
   \scriptsize
   \setlength{\tabcolsep}{3pt}
-  \begin{tabular}{@{}l p{2.6cm} p{1.5cm} c c r p{1.9cm}@{}}
-    \hline
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{@{}l p{3.0cm} p{1.6cm} c c r p{2.4cm}@{}}
+    \toprule
     Variant & Update by the KCs of $q_t$ & KC $j$ read from & (i) & (ii) & Params & Origin \\
-    \hline
-    DKT-Exp          & one step per KC, true label & $h_{t,j-1}$ & no  & no  & 588,465   & \cite{piech2015dkt,pykt} \\
-    DKT-ML           & one step per KC, MASK except last & $h_{t,j-1}$ & yes & no  & 674,965   & \cite{badran2025} \\
-    DKT-PQC-Mask     & as DKT-ML & $h_{t-1}$ & yes & yes & 674,965   & ours \\
-    DKT-PQC-Seq      & one step per KC, true label & $h_{t-1}$ & yes & yes & 588,465   & ours \\
-    DKT-Fuse         & one step per question & $h_{t-1}$ & yes & yes & 588,465   & \cite{badran2025}; per-KC loss ours \\
-    simpleKT         & attention over rows $j<i$ & rows $j<i$ & no  & no  & 3,754,497 & \cite{liu2023simplekt,pykt} \\
-    simpleKT-QM      & attention over rows $g_j<g_i$ & rows $g_j<g_i$ & yes & yes & 3,754,497 & AKT-QM principle~\cite{badran2025} \\
-    \hline
-  \end{tabular}
-  % NOTE: regenerate the Params column by script from registry.csv; simpleKT-QM count to be confirmed (same as simpleKT).
+    \midrule
+    DKT & one step per KC, true label & $h_{t,j-1}$ & no & no & 588,465
+        & \cite{piech2015deep}, our impl. \\
+    DKT, leak-free selection & as DKT; checkpoint chosen with the validation criterion of DKT-PQC
+        & $h_{t,j-1}$ & no & no & 588,465 & control (ours) \\
+    DKT-ML & one step per KC, MASK except last & $h_{t,j-1}$ & yes & no & 674,965
+        & \cite{DBLP:conf/csedu/BadranP25a,badran2026enhancing} \\
+    DKT-ML-PQC & as DKT-ML & $h_{t,0}$ & yes & yes & 674,965 & ours \\
+    DKT-PQC & one step per KC, true label & $h_{t,0}$ & yes & yes & 588,465 & ours \\
+    DKT-Fuse & one step per question & $h_{t,0}$ & yes & yes & 588,465
+        & \cite{DBLP:conf/csedu/BadranP25a,badran2026enhancing}; per-KC loss ours \\
+    \midrule
+    simpleKT & attention over rows $k<i$ & rows $k<i$ & no & no & 3,754,497
+        & \cite{DBLP:conf/iclr/0001L0H023,liu2022pykt} \\
+    simpleKT-PQC & attention over rows with $g_k<g_i$ & rows $k$ with $g_k<g_i$ & yes & yes
+        & 3,754,497 & AKT-QM principle~\cite{DBLP:conf/csedu/BadranP25a,badran2026enhancing} \\
+    \bottomrule
+  \end{tabular}}
 \end{table}

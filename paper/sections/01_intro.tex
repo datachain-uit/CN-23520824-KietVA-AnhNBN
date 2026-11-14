@@ -1,0 +1,22 @@
+Knowledge tracing (KT) predicts the probability that a student answers the next question correctly from their learning history. Most KT models work at the level of knowledge components (KCs), the skills that a question exercises, and a question can cover more than one of them: in XES3G5M~\cite{liu2023xes3g5m}, a large K-12 mathematics dataset with 5,549,635 interactions from about 18,066 students on 7,652 questions over 865 leaf-node KCs, each question is associated with 1.164 KCs on average.
+
+The pyKT benchmark~\cite{liu2022pykt} treats such questions asymmetrically. 
+In training, a multi-KC question is expanded into one token per KC, and every token carries the label of the question. 
+In evaluation (all-in-one), every KC is predicted from the history before the question, and the KC predictions are then aggregated into a single question-level probability. 
+Hence, when the second KC of a question is predicted in training, the first KC and the label to be predicted have already been read. 
+A model can learn to copy the label of the preceding token instead of deriving it from the student's past performance, a shortcut that is useless at evaluation, where the label is never visible. 
+
+Xiong et al.~\cite{xiong2016going} showed that DKT can exploit the repeated rows of multi-skill questions, and Badran and Preisach~\cite{DBLP:conf/csedu/BadranP25a,badran2026enhancing} identify label leakage in KC expansion and propose remedies (masked labels, fused updates, a question mask for attention). Still missing are a controlled measurement under the pyKT all-in-one protocol and a separation of what a remedy must change.
+
+The remedy is a rule on the information available to each KC prediction, called Pre-Question Conditioning (PQC): (i) during training, the context of a prediction contains no information about the label of its own question; (ii) all KCs of a question are predicted from the same context as at evaluation, the history before the question. Condition (ii) implies (i), but some implementations meet (i) without (ii), so each step can be measured separately. PQC constrains what the model reads, not the architecture.
+It is instantiated on DKT~\cite{piech2015deep} with five variants, and on simpleKT~\cite{DBLP:conf/iclr/0001L0H023} with a question mask on the attention.
+
+On XES3G5M, standard DKT (3 seeds, 5 folds) is 0.098 AUC lower on the second and later KCs of multi-KC questions than on the first (0.7029 against 0.8008). PQC removes most of this gap and raises question-level AUC from 0.7841 to 0.7891 (+0.0050, 15 of 15 runs); on simpleKT (5 folds) it raises AUC by +0.0043 (5 of 5 runs). In both models the gain is concentrated in multi-KC questions (+0.032 and +0.024 AUC). On simpleKT the rule costs 0.0027 AUC on single-KC questions, concentrated in immediate repeats of the same question, which our segment convention hides from the model (Sect.~\ref{subsec:res-skt}).
+
+Our contributions are:
+\begin{enumerate}
+  \item We measure intra-question label leakage under the pyKT all-in-one protocol: about 0.10 AUC is lost on the later KCs of multi-KC questions for DKT and about 0.13 for simpleKT.
+  \item We state PQC, a two-condition rule that removes it without changing the architecture (+0.0050 AUC on DKT, +0.0043 on simpleKT, with better Brier score and lower ECE), and decompose its effect: (i) gives +0.0045, (ii) a further +0.0011, and the implementation is a second-order effect (at most 0.0006).
+  \item We analyse the gain by question group, KC position and position in the student's sequence.
+\end{enumerate}
+The masked-label, fused-update and question-mask variants come from earlier work~\cite{DBLP:conf/csedu/BadranP25a,badran2026enhancing}. Our results concern one dataset and two backbones: DKT carries the main analysis (3 seeds, 5 folds), simpleKT has one seed (5 folds).
